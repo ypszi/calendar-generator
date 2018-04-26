@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ypszi\CalendarGenerator;
+namespace Ypszi\CalendarGenerator\Generator;
 
 use DateInterval;
 use DatePeriod;

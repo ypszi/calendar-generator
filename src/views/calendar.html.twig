@@ -1,0 +1,45 @@
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="assets/calendar.css" rel="stylesheet">
+</head>
+<body>
+{% for year, months in calendar %}
+    {% for month, weeks in months %}
+        <table class='calendar'>
+            <thead>
+            <tr>
+                <th colspan='7'>{{ year }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan='7' class='monthName'>{{ monthNames[month] }}</td>
+            </tr>
+            <tr>
+                {% for dayName in dayNames %}
+                    <td class='dayName'>{{ dayName }}</td>
+                {% endfor %}
+            </tr>
+
+            {% for week, days in weeks %}
+            {% set dayCountOnLastWeek = days|length %}
+            {% set trimCount = 7 - dayCountOnLastWeek %}
+            <tr>
+                {% for dayIndex, day in days %}
+                    {% if dayCountOnLastWeek < 7 and dayIndex == 1 %}
+                        {% for i in 1..trimCount %}
+                            <td class='day'></td>
+                        {% endfor %}
+                    {% endif %}
+
+                    <td class='day'>{{ dayIndex }}</td>
+                {% endfor %}
+                {% endfor %}
+            </tr>
+        </table>
+    {% endfor %}
+{% endfor %}
+
+</body>
+</html>
