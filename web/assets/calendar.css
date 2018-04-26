@@ -1,0 +1,27 @@
+.calendar {
+    font-family: 'Indie Flower', cursive;
+    font-size: 23px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+td.monthName {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+td.dayName {
+    font-weight: bold;
+}
+
+td.day {
+    padding: 0 0 100px 0;
+}

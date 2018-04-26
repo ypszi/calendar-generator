@@ -1,0 +1,15 @@
+{
+    "name": "ypszi/calendar-generator",
+    "authors": [
+        {
+            "name": "ypszi",
+            "email": "ypszi93@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Ypszi\\CalendarGenerator\\": "src/"
+        }
+    }
+}

@@ -1,1 +1,1 @@
-# calendar-generator
+# CalendarGenerator micro app
