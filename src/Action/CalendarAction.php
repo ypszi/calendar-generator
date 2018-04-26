@@ -2,8 +2,10 @@
 
 namespace Ypszi\CalendarGenerator\Action;
 
+use DateInterval;
 use DateTimeImmutable;
 use Psr\Http\Message\ResponseInterface;
+use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
 use Ypszi\CalendarGenerator\Generator\CalendarGenerator;
@@ -18,12 +20,13 @@ class CalendarAction
         $this->twig = $twig;
     }
 
-    public function __invoke(): ResponseInterface
+    public function __invoke(Request $request): ResponseInterface
     {
-        $calendarGenerator = new CalendarGenerator(
-            new DateTimeImmutable('2018-01-01'),
-            new DateTimeImmutable('2019-01-01')
-        );
+        $now = new DateTimeImmutable();
+        $startDate = $request->getQueryParam('startDate', $now->format('Y-01-01'));
+        $endDate = $request->getQueryParam('endDate', $now->add(new DateInterval('P1Y'))->format('Y-01-01'));
+
+        $calendarGenerator = new CalendarGenerator(new DateTimeImmutable($startDate), new DateTimeImmutable($endDate));
 
         return $this->twig->render(
             new Response(),
