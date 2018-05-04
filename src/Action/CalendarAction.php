@@ -24,7 +24,7 @@ class CalendarAction
     {
         $now = new DateTimeImmutable();
         $startDate = $request->getQueryParam('startDate', $now->format('Y-01-01'));
-        $endDate = $request->getQueryParam('endDate', $now->add(new DateInterval('P1Y'))->format('Y-01-01'));
+        $endDate = $request->getQueryParam('endDate', $now->format('Y-12-31'));
 
         $calendarGenerator = new CalendarGenerator(new DateTimeImmutable($startDate), new DateTimeImmutable($endDate));
 

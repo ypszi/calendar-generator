@@ -29,7 +29,8 @@ class CalendarGenerator
     {
         $calendar = [];
 
-        $days = $this->createDatePeriod($this->startDate, new DateInterval('P1D'), $this->endDate);
+        $oneDayInterval = new DateInterval('P1D');
+        $days = $this->createDatePeriod($this->startDate, $oneDayInterval, $this->endDate->add($oneDayInterval));
         foreach ($days as $day) {
             $calendar[$day->format('Y')][$day->format('n')][$day->format('W')][$day->format('j')] = $day;
         }
