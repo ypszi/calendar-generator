@@ -2,4 +2,4 @@
 
 use Ypszi\CalendarGenerator\Action\CalendarAction;
 
-$app->get('/calendar', CalendarAction::class);
+$app->get('[/]', CalendarAction::class);
