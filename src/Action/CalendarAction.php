@@ -20,7 +20,7 @@ class CalendarAction
         $this->twig = $twig;
     }
 
-    public function __invoke(Request $request): ResponseInterface
+    public function __invoke(Request $request, Response $response): ResponseInterface
     {
         $now = new DateTimeImmutable();
         $startDate = $request->getQueryParam('startDate', $now->format('Y-01-01'));
@@ -29,7 +29,7 @@ class CalendarAction
         $calendarGenerator = new CalendarGenerator(new DateTimeImmutable($startDate), new DateTimeImmutable($endDate));
 
         return $this->twig->render(
-            new Response(),
+            $response,
             'calendar.html.twig',
             [
                 'monthNames' => $calendarGenerator->generateMonthNames(),

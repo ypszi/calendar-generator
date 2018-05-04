@@ -3,6 +3,10 @@
     font-size: 23px;
 }
 
+table {
+    page-break-before: always;
+}
+
 table th, table td {
     padding: 10px;
     text-align: center;
