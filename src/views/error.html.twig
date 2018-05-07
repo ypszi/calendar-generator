@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Calendar Generator Error{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            margin: 50px 0 0 0;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1>Something wrong happened</h1>
+
+    <p>{{ error.message }}</p>
+{% endblock %}

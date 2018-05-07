@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
+use Throwable;
 use Ypszi\CalendarGenerator\Generator\CalendarGenerator;
 
 class CalendarAction
@@ -26,7 +27,14 @@ class CalendarAction
         $startDate = $request->getQueryParam('startDate', $now->format('Y-01-01'));
         $endDate = $request->getQueryParam('endDate', $now->format('Y-12-31'));
 
-        $calendarGenerator = new CalendarGenerator(new DateTimeImmutable($startDate), new DateTimeImmutable($endDate));
+        try {
+            $calendarGenerator = new CalendarGenerator(
+                new DateTimeImmutable($startDate),
+                new DateTimeImmutable($endDate)
+            );
+        } catch (Throwable $e) {
+            return $this->twig->render($response, 'error.html.twig', ['error' => $e]);
+        }
 
         return $this->twig->render(
             $response,
