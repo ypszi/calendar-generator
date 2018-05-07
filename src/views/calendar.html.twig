@@ -28,7 +28,7 @@
                     {% set dayPaddingCount = 7 - days|length %}
                     {% set isFirstWeekOfMonth = loop.first %}
                     <tr>
-                        {% if isFirstWeekOfMonth %}
+                        {% if isFirstWeekOfMonth and dayPaddingCount > 0 %}
                             {% for i in 1..dayPaddingCount %}
                                 <td class='day'></td>
                             {% endfor %}
