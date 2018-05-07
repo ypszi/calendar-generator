@@ -64,8 +64,10 @@ class CalendarGenerator
         );
 
         foreach ($oneWeekPeriodByDays as $day) {
-            $dayNames[$day->format('j')] = $day->format('l');
+            $dayNames[$day->format('N')] = $day->format('l');
         }
+
+        ksort($dayNames);
 
         return $dayNames;
     }
