@@ -2,7 +2,6 @@
 
 namespace Ypszi\CalendarGenerator\Action;
 
-use DateInterval;
 use DateTimeImmutable;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Http\Request;
