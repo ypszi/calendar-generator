@@ -25,16 +25,16 @@
                 </tr>
 
                 {% for week, days in weeks %}
-                    {% set dayCountOnLastWeek = days|length %}
-                    {% set trimCount = 7 - dayCountOnLastWeek %}
+                    {% set dayPaddingCount = 7 - days|length %}
+                    {% set isFirstWeekOfMonth = loop.first %}
                     <tr>
-                        {% for dayIndex, day in days %}
-                            {% if dayCountOnLastWeek < 7 and dayIndex == 1 %}
-                                {% for i in 1..trimCount %}
-                                    <td class='day'></td>
-                                {% endfor %}
-                            {% endif %}
+                        {% if isFirstWeekOfMonth %}
+                            {% for i in 1..dayPaddingCount %}
+                                <td class='day'></td>
+                            {% endfor %}
+                        {% endif %}
 
+                        {% for dayIndex, day in days %}
                             <td class='day'>{{ dayIndex }}</td>
                         {% endfor %}
                     </tr>
