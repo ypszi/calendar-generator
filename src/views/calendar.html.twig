@@ -27,16 +27,37 @@
                 {% for week, days in weeks %}
                     {% set dayPaddingCount = 7 - days|length %}
                     {% set isFirstWeekOfMonth = loop.first %}
+                    {% set isLastWeekOfMonth = loop.last %}
                     <tr>
                         {% if isFirstWeekOfMonth and dayPaddingCount > 0 %}
-                            {% for i in 1..dayPaddingCount %}
-                                <td class='day'></td>
+                            {% for dayIndex in 1..dayPaddingCount %}
+                                <td class='day gray'>
+                                    {{ days|first|date_modify('-' ~ (dayPaddingCount - dayIndex + 1) ~' day')|date('j') }}
+                                </td>
                             {% endfor %}
                         {% endif %}
 
                         {% for dayIndex, day in days %}
                             <td class='day'>{{ dayIndex }}</td>
                         {% endfor %}
+
+                        {% if isLastWeekOfMonth and dayPaddingCount > 0 %}
+                            {% for dayIndex in 1..dayPaddingCount %}
+                                <td class='day gray'>
+                                    {{ dayIndex }}
+                                </td>
+                            {% endfor %}
+
+                            <tr>
+                                {% for dayIndex in 7..13 %}
+                                    {% set dayOfNextWeek = days|first|date_modify('+' ~ dayIndex ~ ' days') %}
+
+                                    <td class='day gray'>
+                                        {{ dayOfNextWeek|date('j') }}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </table>
