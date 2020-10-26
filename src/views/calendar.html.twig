@@ -31,20 +31,30 @@
                     <tr>
                         {% if isFirstWeekOfMonth and dayPaddingCount > 0 %}
                             {% for dayIndex in 1..dayPaddingCount %}
-                                <td class='day gray'>
+                                <td class='day gray {% if editable%} editable {% endif %}'>
                                     {{ days|first|date_modify('-' ~ (dayPaddingCount - dayIndex + 1) ~' day')|date('j') }}
+
+                                    {% include 'edit_block.html.twig' with {'editable': editable, 'dayIndex': dayIndex, 'disabled': true} %}
                                 </td>
                             {% endfor %}
                         {% endif %}
 
                         {% for dayIndex, day in days %}
-                            <td class='day'>{{ dayIndex }}</td>
+                            <td class='day {% if editable %} editable {% endif %}'>
+                                {{ dayIndex }}
+
+                                {% set settings = {'editable': editable, 'dayIndex': dayIndex, 'disabled': false} %}
+
+                                {% include 'edit_block.html.twig' with settings %}
+                            </td>
                         {% endfor %}
 
                         {% if isLastWeekOfMonth and dayPaddingCount > 0 %}
                             {% for dayIndex in 1..dayPaddingCount %}
-                                <td class='day gray'>
+                                <td class='day gray {% if editable%} editable {% endif %}'>
                                     {{ dayIndex }}
+
+                                    {% include 'edit_block.html.twig' with {'editable': editable, 'dayIndex': dayIndex, 'disabled': true} %}
                                 </td>
                             {% endfor %}
 
@@ -52,8 +62,10 @@
                                 {% for dayIndex in 7..13 %}
                                     {% set dayOfNextWeek = days|first|date_modify('+' ~ dayIndex ~ ' days') %}
 
-                                    <td class='day gray'>
+                                    <td class='day gray {% if editable%} editable {% endif %}'>
                                         {{ dayOfNextWeek|date('j') }}
+
+                                        {% include 'edit_block.html.twig' with {'editable': editable, 'dayIndex': dayIndex, 'disabled': true} %}
                                     </td>
                                 {% endfor %}
                             </tr>

@@ -42,6 +42,7 @@ class CalendarAction
                 'monthNames' => $calendarGenerator->generateMonthNames(),
                 'dayNames' => $calendarGenerator->generateDayNames(),
                 'calendar' => $calendarGenerator->generate(),
+                'editable' => (bool)$request->getQueryParam('editable', false),
             ]
         );
     }

@@ -1,0 +1,9 @@
+{% if editable %}
+    <br>
+    <textarea name="{{ dayIndex }}"
+              id="{{ dayIndex }}"
+              cols="12"
+              rows="4"
+              style="resize: none; text-align: center"
+              {% if disabled %}disabled{% endif %}></textarea>
+{% endif %}
